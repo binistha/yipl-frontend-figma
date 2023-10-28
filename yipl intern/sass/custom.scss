@@ -1,0 +1,745 @@
+@import url('https://rsms.me/inter/inter.css') ;
+  //mixin
+@mixin mainColors($fontSize, $fontWeight, $Color){
+    color: $mainColor;
+    color: $Color;
+    font-size: $fontSize;
+    font-weight: $fontWeight;
+   font-family: 'Inter Variable', sans-serif;
+}
+
+@mixin mainBtn{
+   color: $btnColor;
+   font-size: 16px;
+   font-weight: 700;
+   font-family: 'Dm sans', sans-serif;
+}
+@mixin btnstyle(){
+   color: $btnColor;
+}
+
+@mixin mainStyle(){
+   display: flex;
+   align-items: center;
+}
+
+// variables
+@import "_variables";
+
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  text-decoration: none;
+  border: none;
+  text-transform: none;
+}
+
+html{
+   scroll-behavior: smooth;
+   scroll-padding: 6rem;
+}
+section{
+   padding: 1.9rem 9%;
+}
+.heading {
+   text-align: center; 
+   padding: 1rem;
+   margin: 2rem ;
+   @include mainColors(20px,600,$mainColor);
+}
+header{
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   padding: 1.4rem 9%;
+   @include mainStyle();
+   justify-content: space-between;
+   z-index: 1000;
+   border-bottom: 2px solid white;
+
+   .logo{
+      font-size: $mainFont-size;
+      color: white;
+      font-weight: bolder;
+   }
+
+   .navbar {
+      ul{
+      list-style: none;
+      display: flex;
+  
+       li{
+        position: relative;
+
+        ul{
+         position: absolute;
+         left: 0;
+         width: 350px;
+         border-radius: 8px;
+         display: none;
+         li{
+            background-color: rgba(255, 255, 255, 1);
+            left: 0px;
+            width: 315px;
+            height: auto;
+            padding: 25px 20px 15px 14px;
+
+            a{
+               @include mainColors(16px, 600, $mainColor);
+               color:rgba(16, 24, 40, 1);
+               .bx{
+                  display: inline-block;
+                  padding:0 20px 10px 0px;
+                  font-size: 24px;
+                  color:rgba(29, 111, 163, 1);
+               }
+               p{
+                  @include mainColors(15px, 400, $thirdColor);
+                  color:rgba(16, 24, 40, 1);
+                  padding-left: 35px;
+               }
+            }
+           
+         }
+        }
+    
+      }
+       } 
+    a{
+      @include mainColors(16px, 600, $mainColor);
+      padding: 0 1.5rem;
+    }
+    a:hover{
+       cursor: pointer;
+       color: $mainBgHover;
+    }
+    :hover>ul{
+      display: block;
+     }
+   }
+   .search-icons{
+    i{
+      position: relative;
+      text-decoration: none;
+     @include mainColors(18px, 600, $mainColor);
+     
+    
+    }
+      .bx-search{
+         font-weight: 300;     
+         background-color: none;
+      }
+     }
+}
+//   section for home page
+   .home{
+    @include mainStyle();
+   min-height: 100vh;
+   background: url(/img/figmal0112345.png) no-repeat;
+    background-size: cover;
+      position: relative;
+      z-index: 1;
+      opacity: 1;
+
+      .content{
+         max-width: 60rem;
+         margin: auto;
+        text-align: center;
+       h4{
+        @include mainColors(50px, 600,$mainColor);
+         padding-bottom: 20px;
+       }
+       p{
+         @include mainColors(20px, 400, $mainColor);
+         width: 768px;
+         height: 60px;
+         padding: 1rem 50px;
+         padding-bottom: 70px;
+         line-height: 30px;
+       }
+      }
+   
+   }
+   .home::after{
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 45, 91, 0.8);
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+   }
+   
+    .base{
+         .btn{
+      @include mainColors(18px, 600, $mainColor);
+      cursor: pointer;
+      gap:10px;
+      padding:26px 28px 16px 28px ;    
+      border-radius: 8px;
+      margin: 20px;
+      border: 1px solid rgba(255, 229, 0, 1);
+   }
+    }
+   //  section for the search input type with blurly background
+   .blur-bg-overlay{
+      position: fixed;
+      top: 0px;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      opacity: 0;
+      pointer-events: none;
+      backdrop-filter: blur(5px);
+      transition: 0.1s ease;
+   }
+   .show-popup .blur-bg-overlay {
+      opacity: 1;
+      pointer-events: auto;
+  }
+  
+// search btn show up
+.search-popup{
+   position: fixed;
+   top: 30%;
+   left: 50%;
+   z-index: 10;
+   opacity: 0;
+   pointer-events: none;
+   background: #fff;
+   width: 650px;
+   padding: 20px;
+   transform: translate(-50%, -100%);
+   border-radius: 12px;
+
+   .close-btn {
+      position: absolute;
+      right: 12px;
+      color: black;
+      cursor: pointer;
+  }
+  
+ .search-box {
+   display: flex;
+
+   .input-box {
+      width: 650px;
+    @include mainColors(20px, 600, $secColor);
+      padding: 0 20px;
+      text-align: center;
+      flex-direction: column;
+
+      i{
+         display: flex;
+         gap: 10px;
+         }
+      }
+   }
+ 
+} 
+
+.show-popup .search-popup {
+   opacity: 1;
+   pointer-events: auto;
+   transform: translate(-50%, -70%);
+   transition: transform 0.3 ease, opacity 0.1s;
+}
+
+// services for the services container
+.services-primary {
+   padding: 26px;
+   text-align: center;
+   @include mainColors(32, 600, $secondBgcolor);
+  
+}
+.services-container h2{
+   text-align: center; 
+   @include mainColors(18px, 400, $secColor);
+ }
+#services{
+   margin:  30px 20px 20px 8%;
+   display: flex;
+   gap: 22px;
+   .box{
+      margin-bottom: 20px;
+      margin-left: 20px;
+      img{
+         width: 450px;
+         height: 400px;
+         margin: auto;
+         border-top-left-radius: 30px;
+         border-top-right-radius: 30px;
+         display: block;
+      }
+      h3{
+         padding-top: 12px;   
+         margin-left:25px;
+         @include mainColors(32, 700, $secondBgcolor);
+      }
+      p{
+         padding-top:10px;
+         margin-left:25px;
+         padding-bottom: 10px;
+         width: 290px;
+         @include mainColors(14px, 400, $thirdColor);
+      }
+      .slink{
+         margin-left:25px;
+         @include mainBtn();
+         i{
+            margin-top:12px;
+         }
+      }
+   }
+  
+}
+// section for who we are
+.collaboration-container{
+   display: flex;
+}
+.collaboration-primary{
+   padding: 20px 10% 20px 10%;
+   h2{
+      @include mainColors(32, 600, $secondBgcolor );
+   }
+   .btncon{
+      margin-top:20px;
+      color: blue;
+   }
+   p{
+      @include mainColors(20px, 400, $secColor);
+      padding: 20px 0 20px 40px;
+   }
+   a{
+     @include mainBtn();
+     margin-left: 10%;
+   }
+}
+.collaboration{
+   display: flex;
+   right: 20%;
+   padding-bottom: 10%;
+   h3{
+      @include mainColors(32, 0, $secColor);
+      padding: 0 0 20px 15px;
+   }
+   img{
+      border-radius: 25px;
+      width:328px;
+      height: auto;
+      padding: 10px 25px 10px 10px;
+   }
+   .images1{
+      padding-top:30%;
+   }
+   .images2 .images3{
+      padding-top: 20px;
+   }
+   .box:hover{
+      transform: scale(1.1);
+   }
+}
+
+// section application 
+.application{
+   display: flex;
+   margin-left: 11%;
+   padding: 20px 20px 20px 50px ;
+ 
+}
+.apply{
+   display: flex;
+   padding-left:6%;
+   h2{
+      padding-top:15px;
+      padding-left:20px;
+   }
+   img{
+      width: 55.46px;
+      height: 55.36px;
+   }
+}
+
+// section of news application
+.news-primary{
+   padding: 26px;
+   text-align: center;
+   @include mainColors(32px, 600, $secondBgcolor);
+   h2{
+      @include mainColors(20px, 400, $secColor);
+   }
+}
+.news-container{
+  h2{
+   text-align: center; 
+   align-items: center;
+   @include mainColors(20px, 400, $secColor);
+}
+ .btnnews {
+   margin-top: 30px;
+   text-align: center;
+   a{
+   border: 1px solid $btnColor;
+   padding: 14px;
+   border-radius: 4px;
+    @include mainBtn();
+    color: $thirdColor;
+
+ }
+ :hover{
+   color: $btnColor;
+   border: 1px solid $thirdColor;
+   cursor: pointer;
+ }
+ }
+
+}
+#news{
+   //  display: inline-block;
+   //  margin: 20px 1px 45px 35px;
+    padding-left: 80px;
+   .items{
+      padding: 20px 10px 30px 20px;
+      display: inline-block;
+       
+    .row{
+      display: inline-block;
+       background-color: rgba(249, 249, 255, 1);
+       padding: 18px;
+       border-radius: 20px;
+      }
+    .but{
+         color: $btnColor;
+      }
+   }
+   img{
+      height: auto;
+      width: 395px;
+      border-radius: 16px;
+   }
+   h3{
+      @include mainColors(20px, 400, $secColor);
+      padding-top: 10px;
+   }
+   p{
+      @include mainColors(14px, 400, $thirdColor);
+    width: 325px;
+    padding: 20px 0 5% 0;
+
+   }
+}
+// section part of the contact
+.resources-primary{
+   padding: 26px;
+   text-align: center;
+   @include mainColors(32px, 600, $secondBgcolor);
+}
+.resources-container{
+   background-color: rgba(249, 249, 255, 1);
+   display: block;
+   padding: 80px 0px 80px 0px;
+
+ h2{
+   @include mainColors(20px, 400, $secColor);
+   padding-bottom:30px;
+   text-align: center; 
+}
+.view-all{
+   margin-top: 30px;
+   text-align: center;
+   a{
+   border: 1px solid $btnColor;
+   padding: 14px;
+   border-radius: 4px;
+    @include mainBtn();
+    color: $thirdColor;
+
+ }
+ :hover{
+   color: $btnColor;
+   border: 1px solid $thirdColor;
+   cursor: pointer;
+ }
+}
+}
+.resources{
+   display: flex;
+   margin-left: 15%;
+   padding: 20px 25px 25px 3%;
+   .toolkit{
+      padding: 35px 40px 40px 35px;
+      margin-left: 22px;
+      border-radius: 14px;
+      background-color: rgba(255, 255, 255, 1);
+      .card{
+      .tlk{
+         @include mainColors(25px, 600, $secColor);
+         i{
+            font-size: 30px;
+         }
+      }      
+      i{
+         @include mainColors(22px, 400, $secColor);
+         padding: 5px 20px;
+        cursor: pointer;
+        border-radius: 10px;
+      }
+     h3{
+      @include mainColors(20px, 600, $thirdColor);
+       padding: 10px 10px 15px 3px;
+      }
+     p{
+      @include mainColors(16px, 400, $thirdColor);
+      widows: 294px;
+      padding: 5px 8px 40px 5px;
+       }
+     .but, .bx
+     { 
+      @include mainColors(18px, 400, $thirdColor);
+        color: $btnColor;
+        padding: 3px 5px 30px 5px;
+   
+   }
+  }
+}
+ } 
+
+ 
+
+// section part of the contact
+.primary-center{
+   padding: 26px;
+   text-align: center;
+   @include mainColors(32px, 600, $secondBgcolor);
+}
+.contact {
+   position: relative;
+   padding: 100px;
+  h4{
+   @include mainColors(20px, 400, $secColor);
+   padding-bottom:30px;
+   text-align: center; 
+  }
+  
+}
+#contact-box{
+   @include mainStyle();
+   justify-content: center;
+
+   input, textarea{
+     width: 100%;
+     padding: 0.5rem;
+     border-radius: 5px;
+     border: 2px solid black;
+     @include mainColors(14px, 400, $thirdColor);
+
+   }
+   form{
+      width: 30%;
+   }
+   label{
+      @include mainColors(14px, 400, $thirdColor);
+   }
+   button{
+      border-radius: 4px;
+      border: 1px solid $btnColor;
+      text-align: center;
+
+   }
+   .form-group button{
+      text-decoration: none;
+      padding: 12px 22px 12px 22px ;
+      margin-top: 15px;
+      margin-left:43%;
+      @include mainBtn();
+      color:$thirdColor;
+   }
+}
+#names{
+   width: 48%;
+   @include mainColors(14px, 400, $thirdColor);
+   display:inline-block;
+}
+.fname{
+   margin-right: 38px;
+   }
+
+//fotter part of the sites
+
+.catloglinks{
+   padding-top: 100px;
+   min-height: 53vh;
+   background: url(/img/news4.png) left center no-repeat;
+   background-size: cover;
+   position: relative;
+   z-index: 1;
+   opacity: 1;
+}
+.catloglinks::after{
+   content: "";
+   display: block;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 45, 91, 0.8);
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: -1;
+}
+.catlog-socials{
+   h2{
+      @include mainColors(32px, 600, $mainColor);
+   }
+   p{
+      @include mainColors(18px, 600, $thirdColor);
+    font-size: 16px;
+    color:$mainColor;
+    padding-top: 20px;
+   }
+   .social{
+      padding-top: 20px;
+      @include mainStyle();
+      gap: 16px;
+      a{
+         height: 37px;
+          width: 37px;
+          background-color: $mainColor;
+         display: inline-flex;
+         align-items: center;
+         justify-content: center;
+         @include mainColors(18px, 600, $thirdColor);
+         border-radius: 50%;
+        transition: 2s;
+
+      :hover {
+         transform: scale(1.2);
+         color: $mainBgHover;     
+     }
+      }
+   }
+}
+.main {
+   display: flex;
+   flex-wrap: wrap;
+}
+.footer {
+   padding: 83px 0;
+}
+.catmedic{
+   width:33%;
+}
+.linksres{
+   display: flex;
+   flex-wrap: wrap;
+   padding-left: 30px; 
+  
+   .col{
+      margin-left: 60px;
+     h4 {
+      @include mainColors(20px, 400, $secColor);
+      color:$mainColor;
+        margin-bottom: 25px;
+        position: relative;
+    }
+    ul li:not(:last-child) {
+     margin-bottom: 15px;
+  }
+  ul li{
+    list-style: none;
+     
+     a {
+      @include mainColors(18px, 400, $thirdColor);
+     color:$mainColor;
+     display: block;
+     transition: 2s;
+     :hover {
+        transform: translateX(-12px);
+    }
+  }
+  }
+  }
+}
+
+
+// section for arrow
+.top-page{
+   float: right;
+ 
+}
+.top-arrow{
+      .topbtn{
+      @include mainColors(50px, 400, $secColor);
+      background-color: #fff;
+      border-radius: 50%;
+      padding: 7px 7px 0px 7px;
+      box-shadow: 8px 8px 8px 1px gray;
+      }
+}
+// last footer
+.last-footer{
+   padding: 20px;
+   .copy-left{
+      display:inline-block;
+      @include mainColors(18px, 400, $thirdColor);
+      color: rgba(124, 125, 130, 1);
+   }
+   .copy-right{
+      margin-right: 30px;
+      padding: 0px 0 29px 50px;
+     float:right;
+     @include mainBtn();
+     color: rgba(124, 125, 130, 1);
+   }
+}
+
+// media queries
+@media(max-width:991px){
+   html {
+      font-size: 55%;
+  }
+  header {
+      padding: 2rem;
+  }
+  section {
+      padding: 2rem;
+  }
+  .home {
+      background-position: left;
+   .content h4{
+      font-size: 30px; 
+   }
+  
+
+  }
+  
+}
+@media(max-width:750){
+   .collaboration-primary, .services-primary, .news-primary, .resources-primary, .primary-center{
+      font-size: 28px;
+   }
+   #services img{
+      width: 270px;
+      height: 252px;
+   }
+   #news img{
+      height: auto;
+      width: 225px;
+   }
+   .catlog-socials h2{
+      font-size: 24px;
+   }
+   
+}
+@media(max-width:450){
+   html {
+      font-size: 50%;
+  }
+
+  .heading {
+      font-size: 3rem;
+  }
+}
